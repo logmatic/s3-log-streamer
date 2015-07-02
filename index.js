@@ -12,11 +12,11 @@ logger.info("Start",config.logmatic.apiKey);
 
 //Configure Logmatic.io's client
 var client = new Client({
-    host: config.tcp.host,
-    port: config.tcp.port,
-    apiKey:config.logmatic.apiKey,
-    meta: config.tcp.meta,
-    formatter: require('./formatters')[config.tcp.formatter]
+  host: config.tcp.host,
+  port: config.tcp.port,
+  apiKey:config.logmatic.apiKey,
+  meta: config.tcp.meta,
+  formatter: require('./formatters')[config.tcp.formatter]
 });
 
 //Configure s3_params
@@ -42,7 +42,7 @@ var events = require('events');
 var polling_cycles = new events.EventEmitter();
 polling_cycles.on('start',function(state){
   if(state)
-    s3Poller._last = state;//Connect client
+  s3Poller._last = state;//Connect client
   pollingCycle();
 });
 polling_cycles.on('end',function(state){

@@ -21,7 +21,7 @@ function Client (options) {
 	if(!options.formatter){
 		this._formatter = formatters.Default;
 	}else
-		this._formatter = options.formatter;
+	this._formatter = options.formatter;
 }
 
 Client.prototype.connect = function (callback) {
