@@ -1,6 +1,6 @@
 #s3-log-streamer
 
-S3 Log Streamer aims at facilitating the extraction of real time s3 log published and stream it to tcp clients, syslog clients or a [Logmatic.io](http://logmatic.io) platform. This project is able to stream logs from S3 accesses, AWS Cloudtrail, and most AWS third party services.
+S3 Log Streamer (S3 log forwarder) aims at facilitating the extraction of real time s3 log published and stream it to tcp clients, syslog clients or a [Logmatic.io](http://logmatic.io) platform. This project is able to stream logs from S3 accesses, AWS Cloudtrail, and most AWS third party services.
 
 ## Log directories conditions
 
@@ -73,6 +73,8 @@ Use the command line below to launch such polling cycle periodically and forward
 ```
 S3_BUCKET=<your_bucket> S3_PREFIX=<your_directory> TCP_HOST=<your_syslog_host> TCP_HOST=<your_syslog_port> POLLING_PERIOD_MS=15000 node index.js
 ``` 
+
+## F.A.Q.
 
 ### I have multiple log directories I want to follow. How do I do?
 
