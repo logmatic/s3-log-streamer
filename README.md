@@ -24,7 +24,13 @@ aws_secret_access_key=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ```
 
 ## Streaming s3 log data
-Once your credentials are setup you can start streaming log data from a S3 bucket
+Once your credentials are setup you can start streaming log data from a S3 bucket.
+
+Before starting, don't forget to install the dependencies:
+
+```
+> npm install
+```
 
 ### To Logmatic.io
 
@@ -39,7 +45,7 @@ To stream S3 logs you need to define:
 So to launch a single polling cycle you can enter the following command line:
 
 ```
-S3_BUCKET=<your_bucket> S3_PREFIX=<your_directory> LOGMATIC_API_KEY=<your_api_key> node index.js
+> S3_BUCKET=<your_bucket> S3_PREFIX=<your_directory> LOGMATIC_API_KEY=<your_api_key> node index.js
 ```
 
 That will load all the log data from the last hour, stream it to Logmatic.io and persist a state file under `./state.json`. The state file is used so on the next polling cycle the project will start from the last S3 object at the right position in the file.
@@ -51,7 +57,7 @@ You can add `LOG_LEVEL=debug` to your command line if you want to get the detail
 You can ask the libary to poll periodically by defining a time cycle in millisec. For instance, if you want to push S3 data every 15 seconds:
 
 ```
-S3_BUCKET=<your_bucket> S3_PREFIX=<your_directory> LOGMATIC_API_KEY=<your_api_key> POLLING_PERIOD_MS=15000 node index.js
+> S3_BUCKET=<your_bucket> S3_PREFIX=<your_directory> LOGMATIC_API_KEY=<your_api_key> POLLING_PERIOD_MS=15000 node index.js
 ```
 
 #### Use the syslog RFC-5424 format
@@ -60,7 +66,7 @@ Some Logmatic.io users already provide their server logs through syslog forwarde
 If you want to maintain this log format, the libary can also do it. Add the following configuration:
 
 ```
-... TCP_FORMATTER=Logmatic_RFC5424 node index.js
+> ... TCP_FORMATTER=Logmatic_RFC5424 node index.js
 ```
 
 ### To a syslog server
@@ -71,7 +77,7 @@ To do this you need to have a running syslog server listening a under a defined 
 Use the command line below to launch such polling cycle periodically and forward it to your server:
 
 ```
-S3_BUCKET=<your_bucket> S3_PREFIX=<your_directory> TCP_HOST=<your_syslog_host> TCP_HOST=<your_syslog_port> POLLING_PERIOD_MS=15000 node index.js
+> S3_BUCKET=<your_bucket> S3_PREFIX=<your_directory> TCP_HOST=<your_syslog_host> TCP_HOST=<your_syslog_port> POLLING_PERIOD_MS=15000 node index.js
 ``` 
 
 ## F.A.Q.
@@ -83,8 +89,8 @@ Yes the S3 log streamer has been build to follow logical log files of a single d
 However, you can launch how many log streamers in parallel simply by changing the name of their state file:
 
 ```
-... STATE_FILE=<state_file1> node index.js
-... STATE_FILE=<state_file2> node index.js
+> ... STATE_FILE=<state_file1> node index.js
+> ... STATE_FILE=<state_file2> node index.js
 etc...
 ```
 
@@ -93,5 +99,5 @@ etc...
 You can provide a `from` date condition in your command line. It will be used the first time then the state file take the relay.
 
 ```
-... FROM=<valid js date> node index.js
+> ... FROM=<valid js date> node index.js
 ```
