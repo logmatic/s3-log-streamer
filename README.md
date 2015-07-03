@@ -1,12 +1,12 @@
 #s3-log-streamer
 
-S3 Log Streamer (S3 log forwarder) aims at facilitating the extraction of real time s3 log published and stream it to tcp clients, syslog clients or a [Logmatic.io](http://logmatic.io) platform. This project is able to stream logs from S3 accesses, AWS Cloudtrail, and most AWS third party services.
+S3 Log Streamer (S3 log forwarder) aims at facilitating the real time extraction of logs published to S3 and stream them to tcp clients, syslog clients or a [Logmatic.io](http://logmatic.io) platform. This project is able to stream logs from S3 accesses, AWS Cloudtrail, and other AWS services.
 
 ## Log directories conditions
 
-This library polls all the logs from a bucket and an S3 directory. However, some conditions must be fullfiled:
+This library polls all the logs from a bucket and an S3 directory. However, some conditions must be fulfilled:
 
-* Only logs must resides in the pointed log directory
+* Only logs must reside in the pointed log directory
 * Log files must be ordered alphabetically according to their creation time (all AWS services do that)
 
 ## AWS credentials
@@ -24,7 +24,7 @@ aws_secret_access_key=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ```
 
 ## Streaming s3 log data
-Once your credentials are setup you can start streaming log data from a S3 bucket.
+Once your credentials are setup you can start streaming log data from an S3 bucket.
 
 Before starting, don't forget to install the dependencies:
 
@@ -63,7 +63,7 @@ You can ask the libary to poll periodically by defining a time cycle in millisec
 #### Use the syslog RFC-5424 format
 
 Some Logmatic.io users already provide their server logs through syslog forwarders respecting the RFC-5424 format.
-If you want to maintain this log format, the libary can also do it. Add the following configuration:
+If you want to maintain this log format and format your s3 logs that way, the libary can also do it. Add the following configuration:
 
 ```
 > ... TCP_FORMATTER=Logmatic_RFC5424 node index.js
@@ -78,7 +78,7 @@ Use the command line below to launch such polling cycle periodically and forward
 
 ```
 > S3_BUCKET=<your_bucket> S3_PREFIX=<your_directory> TCP_HOST=<your_syslog_host> TCP_HOST=<your_syslog_port> POLLING_PERIOD_MS=15000 node index.js
-``` 
+```
 
 ## F.A.Q.
 
@@ -86,7 +86,7 @@ Use the command line below to launch such polling cycle periodically and forward
 
 Yes the S3 log streamer has been build to follow logical log files of a single directory and then potentially of a single service.
 
-However, you can launch how many log streamers in parallel simply by changing the name of their state file:
+However, you can launch multiple log streamers in parallel simply by changing the name of their state file:
 
 ```
 > ... STATE_FILE=<state_file1> node index.js
