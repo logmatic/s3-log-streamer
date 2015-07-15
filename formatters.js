@@ -7,13 +7,13 @@ var logmatic_RFC5424_formatter = function(options){
   var d = new Date();
   d.setHours(d.getHours()-d.getTimezoneOffset()/60 );
   var line = options.apiKey + " " + logmaticSyslogProducer.produce({
-      facility: options.meta.facility || 'local4', // these can either be a valid integer,
-      severity: options.meta.level ||'info',  // or a relevant string
-      host: options.meta.host ||'AWS',
-      appName: options.meta.appName || 'S3_access',
-      pid: options.meta.pid || '',
-      date: d,
-      message: JSON.stringify(options.data)
+    facility: options.meta.facility || 'local4', // these can either be a valid integer,
+    severity: options.meta.level ||'info',  // or a relevant string
+    host: options.meta.host ||'AWS',
+    appName: options.meta.appName || 'S3_access',
+    pid: options.meta.pid || '',
+    date: d,
+    message: JSON.stringify(options.data)
   });
   return line+"\n";
 };
@@ -24,19 +24,19 @@ var syslog_formatter = function(options){
   var d = new Date();
   d.setHours(d.getHours()-d.getTimezoneOffset()/60 );
   var line = syslogProducer.produce({
-      facility: options.meta.facility || 'local4', // these can either be a valid integer,
-      severity: options.meta.level ||'info',  // or a relevant string
-      host: options.meta.host ||'AWS',
-      appName: options.meta.appName || 'S3_access',
-      pid: options.meta.pid || '',
-      date: d,
-      message: JSON.stringify(options.data)
+    facility: options.meta.facility || 'local4', // these can either be a valid integer,
+    severity: options.meta.level ||'info',  // or a relevant string
+    host: options.meta.host ||'AWS',
+    appName: options.meta.appName || 'S3_access',
+    pid: options.meta.pid || '',
+    date: d,
+    message: JSON.stringify(options.data)
   });
   return line+"\n";
 };
 
 var logmatic = function(options){
-    return [ options.apiKey, ' ', JSON.stringify(options.data), '\n' ].join('')
+  return [ options.apiKey, ' ', JSON.stringify(options.data), '\n' ].join('')
 };
 
 
