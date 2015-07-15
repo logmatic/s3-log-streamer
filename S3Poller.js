@@ -24,6 +24,8 @@ util.inherits(S3Poller, EventEmitter);
 S3Poller.prototype.poll = function (state) {
   if (state) {
     this._last = state;
+  }else{
+    this._last = {};
   }
   var s3 = new AWS.S3();
   var self = this;
@@ -47,7 +49,7 @@ S3Poller.prototype.poll = function (state) {
         Bucket: self._s3Params.Bucket,
         Prefix: self._s3Params.Prefix,
       };
-      if (self._last.Key) {
+      if (self._last && self._last.Key) {
         listParams.Marker = self._last.Key.substring(0,self._last.Key.length-1);
       } else if (self._s3Params.Marker) {
         listParams.Marker = self._s3Params.Marker;
@@ -78,6 +80,8 @@ S3Poller.prototype.poll = function (state) {
   };
 
   var handleS3Content = function (content, callback) {
+    logger.debug('### Handle S3 Content', content);
+
     // Create s3 params for getObject method
     var objectParams = {
       Bucket: self._s3Params.Bucket,Key:

@@ -66,6 +66,13 @@ s3Poller.on('end', function (state) {
   });
 });
 
+var pollingCycle = function(state){
+  //Connect client
+  client.connect(function(){
+    s3Poller.poll(state);
+  });
+};
+
 // Retrieve state file content and start
 fs.readFile(config.state_file, 'utf8', function (err, data) {
   if (err) {
