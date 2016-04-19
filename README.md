@@ -1,4 +1,5 @@
 #s3-log-streamer
+*Link to the [Logmatic.io documentation](http://doc.logmatic.io/docs/aws-s3)*
 
 S3 Log Streamer (S3 log forwarder) aims at facilitating the real time extraction of logs published to S3 and stream them to tcp clients, syslog clients or a [Logmatic.io](http://logmatic.io) platform. This project is able to stream logs from S3 accesses, AWS Cloudtrail, and other AWS services.
 
